@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+font-family:Poppins;
+background:#4b0d17; 
+color:#fff8ef;
+}
+
+section{
+display:none;
+min-height:100vh;
+width:100%;
+padding:30px;
+box-sizing:border-box;
+text-align:center;
+}
+
+.active{
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+}
+
+button{
+cursor:pointer;
+border:none;
+padding:10px 18px;
+border-radius:20px;
+font-weight:500;
+background:#fff8ef;
+color:#4b0d17;
+margin:5px;
+}
+
+
+#landing{
+background:linear-gradient(160deg,#4b0d17,#7a1425);
+}
+
+#landing h1{
+font-family:"Playfair Display";
+font-size:38px;
+margin-bottom:20px;
+}
+
+
+
+#chatBox{
+width:420px;
+max-width:95%;
+height:550px;
+background:#fff8ef;
+border-radius:25px;
+display:flex;
+flex-direction:column;
+overflow:hidden;
+}
+
+.chatHeader{
+background:#7a1425;
+color:white;
+padding:15px;
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.chatHeader img{
+width:35px;
+height:35px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.chatBody{
+flex:1;
+padding:15px;
+overflow-y:auto;
+display:flex;
+flex-direction:column;
+}
+
+.msg{
+max-width:70%;
+padding:10px 14px;
+border-radius:20px;
+font-size:13px;
+line-height:1.5;
+margin:6px 0;
+}
+
+.left{
+background:#ece5dd;
+color:black;
+align-self:flex-start;
+border-bottom-left-radius:5px;
+}
+
+.right{
+background:#7a1425;
+color:white;
+align-self:flex-end;
+border-bottom-right-radius:5px;
+}
+
+
+.chatOptions{
+padding:10px;
+border-top:1px solid #ddd;
+background:#fff8ef;
+display:flex;
+flex-direction:column;
+gap:8px;
+}
+
+.chatOptions button{
+width:100%;
+background:#7a1425;
+color:white;
+border-radius:15px;
+padding:10px;
+font-size:13px;
+}
+
+
+#polaroid{
+background:#4b0d17;
+}
+
+.polaroid-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+gap:20px;
+width:100%;
+max-width:700px;
+margin-top:20px;
+}
+
+.polaroid{
+background:white;
+padding:10px;
+cursor:pointer;
+transition:.3s;
+}
+
+.polaroid img{
+width:100%;
+height:150px;
+object-fit:cover;
+}
+
+.polaroid:hover{
+transform:rotate(-3deg) scale(1.05);
+}
+
+#overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.85);
+display:none;
+justify-content:center;
+align-items:center;
+padding:20px;
+overflow-y: auto;
+}
+
+.letterBox{
+background:#fff8ef;
+color:#4b0d17;
+max-width:550px;
+padding:35px;
+line-height:1.8;
+font-size:14px;
+}
+#overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.85);
+display:none;
+justify-content:center;
+align-items:center;
+padding:20px;
+z-index:9999;  
+}
+
+
+#confess{
+background:#4b0d17;
+}
+
+#confess img{
+width:220px;
+margin-bottom:20px;
+}
+
+
+#finalLetter{
+background:#3a0a12;
+}
+
+.book{
+background:#fff4e6;
+width:450px;
+max-width:95%;
+padding:40px;
+height:400px;         
+overflow-y:auto;    
+font-family:"Playfair Display";
+color:#4b0d17;
+line-height:2;
+box-shadow:0 30px 80px rgba(0,0,0,.6);
+}
+
+.typewriter{
+white-space:pre-wrap;
+border-right:2px solid #4b0d17;
+overflow:hidden;
+}
+
+@media(max-width:768px){
+#chatBox{height:85vh}
+.book{padding:25px}
+}
+
+</style>
+</head>
+
+<body>
+
+<section id="landing" class="active">
+<h1>happy valentine!!</h1>
+<p>this web made with huge of love</p>
+<button onclick="startChat()">open</button>
+</section>
+
+<section id="chat">
+<div id="chatBox">
+
+<div class="chatHeader">
+<img src="mikaela5.jpeg">
+<span>kieranth</span>
+</div>
+
+<div class="chatBody" id="chatBody"></div>
+
+<div class="chatOptions" id="chatOptions"></div>
+
+</div>
+</section>
+
+<section id="polaroid">
+<h2 style="font-family:Playfair Display;">things i like about you</h2>
+<div class="polaroid-grid">
+<div class="polaroid" onclick="openLetter(0)"><img src="mika.jpeg"></div>
+<div class="polaroid" onclick="openLetter(1)"><img src="mikaela1.jpeg"></div>
+<div class="polaroid" onclick="openLetter(2)"><img src="mikaela2.jpeg"></div>
+<div class="polaroid" onclick="openLetter(3)"><img src="mikaela3.jpeg"></div>
+<div class="polaroid" onclick="openLetter(4)"><img src="mmikaxhan.jpeg"></div>
+<div class="polaroid" onclick="openLetter(5)"><img src="mikaela6.jpeg"></div>
+</div>
+<br>
+<button onclick="showSection('confess')">continue</button>
+</section>
+
+<div id="overlay">
+<div class="letterBox" id="letterContent"></div>
+</div>
+
+<section id="confess">
+<img id="confessImg" src="Yuichiro.jpeg">
+<h2>Sua, would you give me the honor of officially being your boyfriend and taking care of your heart from now on?</h2>
+<button onclick="sayYes()">yes</button>
+<button onclick="sayNo()">no</button>
+<p id="plead"></p>
+</section>
+
+<section id="finalLetter">
+<div class="book">
+<div class="typewriter" id="typed"></div>
+</div>
+</section>
+
+<script>
+
+function showSection(id){
+document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+}
+
+let step=0;
+
+const script=[
+{text:"Hii Sua! Lagi apa? I hope you're having a good day today!!",options:["Hii Kieranth! Lagi santai aja kok, how about you?","Hii! My day is pretty good, makasih ya udah nanya.", "Hello! Tumben nanya, ada apa nih?"]},
+{text:"Nothing much, just had you on my mind lately. Boleh nanya sesuatu nggak? Just a random thought",options:["Boleh banget, nanya apa tuh?", "Tumben nanya dulu, apa tuh Kieranth?", "Sure, I'm all ears. Penasaran deh..."]},
+{text:"Kalau boleh tahu... apa sih hal pertama yang kamu pikirin kalau denger nama aku? Or maybe, what do you like about me?",options:["I think you're the most gentle and supportive person I know..", "Safe place.", "Your kindness."]},
+{text:"m glad I could be that person for you. Kalau aku, yang aku pikirin tentang kamu itu... how you're my greatest pride. I'm always so proud of you, Sua",options:["Makasih ya udah selalu bangga sama aku, it means everything to me.","thats dramatic..", "Duh, jadi terharu... makasih ya, kieranth."]},
+{text:"I mean it. You've been my safest place, and I want to be that person for you too. Forever.",options:["You already are, Kieranth..","Makasih ya udah selalu mau jadi tempat aku pulang. It means everything.","I really appreciate that. Aku juga mau kita selalu kayak gini."]},
+{text: "I'm happy to hear that. Btw Sua... sebenernya ada satu hal lagi yang mau aku kasih tahu kamu.",options:["Tell me... sesuatu apa? Jadi deg-degan.","Apa tuh? Kenapa tiba-tiba serius banget?","I'm listening. Sesuatu yang penting banget ya?" ]}
+
+];
+
+function startChat(){
+showSection("chat");
+sendKieran();
+}
+
+function scrollBottom(){
+let box=document.getElementById("chatBody");
+box.scrollTop=box.scrollHeight;
+}
+
+function sendKieran(){
+if(step<script.length){
+setTimeout(()=>{
+let bubble=document.createElement("div");
+bubble.className="msg left";
+bubble.innerText=script[step].text;
+document.getElementById("chatBody").appendChild(bubble);
+scrollBottom();
+showOptions();
+},800);
+}else{
+setTimeout(()=>showSection("polaroid"),1000);
+}
+}
+
+function showOptions(){
+let container=document.getElementById("chatOptions");
+container.innerHTML="";
+
+script[step].options.forEach(opt=>{
+let btn=document.createElement("button");
+btn.innerText=opt;
+btn.onclick=function(){
+container.innerHTML="";
+sendUser(opt);
+};
+container.appendChild(btn);
+});
+}
+
+function sendUser(text){
+let bubble=document.createElement("div");
+bubble.className="msg right";
+bubble.innerText=text;
+document.getElementById("chatBody").appendChild(bubble);
+scrollBottom();
+step++;
+sendKieran();
+}
+
+
+
+const letters=[
+"The way you handle things, Sejujurnya aku selalu kagum gimana kamu bisa tetep berdiri meskipun duniamu lagi nggak baik-baik aja. Kamu nggak harus selalu kelihatan kuat, tapi cara kamu bertahan itu bikin aku sadar kalau kamu itu hebat banget. I’m always so proud of you, Sua.",
+"How you make me feel safe,nggak semua orang bisa bikin aku ngerasa tenang cuma dengan ada di dekatnya. Tapi sama kamu, aku ngerasa bisa jadi diri sendiri tanpa perlu pura-pura atau takut di-judge. Makasih ya udah jadi satu-satunya tempat yang bikin aku ngerasa pulang", 
+"The little things you do, mungkin kamu nggak sadar, tapi hal-hal kecil yang kamu lakuin—cara kamu ketawa atau cara kamu dengerin cerita aku—itu beneran nyelametin hari-hari aku yang berisik. Your existence is more than enough to make my day.",
+"Your kindness. aku suka banget gimana cara kamu peduli sama orang lain, bahkan di saat kamu sendiri lagi capek. Kamu punya hati yang terlalu baik buat dunia yang kadang jahat ini, dan itu yang bikin kamu beda banget dari siapapun yang pernah aku temuin.",
+"Your kindness. aku suka banget gimana cara kamu peduli sama orang lain, bahkan di saat kamu sendiri lagi capek. Kamu punya hati yang terlalu baik buat dunia yang kadang jahat ini, dan itu yang bikin kamu beda banget dari siapapun yang pernah aku temuin.",
+"Just you. nggak ada yang perlu kamu ubah dari diri kamu. Aku suka setiap bagian dari kamu, bahkan yang menurut kamu itu kurang. Di mataku, kamu tetep kebanggaanku yang paling besar. I love the way you are.",
+"i like you. fully."
+];
+
+function openLetter(i){
+document.getElementById("letterContent").innerText=letters[i];
+document.getElementById("overlay").style.display="flex";
+}
+
+document.getElementById("overlay").onclick=function(){
+this.style.display="none";
+};
+
+function sayNo(){
+document.getElementById("confessImg").src="yu crying.jpeg";
+document.getElementById("plead").innerText="please… don’t say no like that.";
+setTimeout(()=>{
+document.getElementById("confessImg").src="Yuichiro.jpeg";
+document.getElementById("plead").innerText="";
+},2000);
+}
+
+function sayYes(){
+showSection("finalLetter");
+typeWriter();
+}
+
+function typeWriter(){
+let text=`To the man who just made me the luckiest person alive, Suarahsa.
+Honestly, I’m still trying to process this.
+ My heart is racing because I’ve never been this happy in my entire life.
+  Thank you for choosing me. Thank you for giving me the honor of being yours.
+I promise to give you the kind of love you’ve only read about in books or seen in movies.
+ A love that is patient, protective, and completely sincere.
+  Aku mungkin nggak bisa kasih kamu segalanya, but I can promise you this
+   you will never have to wonder if you’re loved, because I’ll spend every single day making sure you know that you are.
+
+You are my greatest pride, Sua.
+ I want to be the person who holds your hand through the storms and celebrates you when the sun shines.
+  I’m not just here for the good times, I’m here for every version of you.
+I’m officially yours now, and I’m going to cherish you more than words can ever describe.
+ Let’s make our own beautiful story, starting from this very second.
+I love you, Sua. Beyond measure.
+Yours, until the last petal falls,
+Kieranth. `;
+
+let i=0;
+function type(){
+if(i<text.length){
+document.getElementById("typed").innerHTML+=text.charAt(i);
+i++;
+
+let container = document.querySelector(".book");
+container.scrollTop = container.scrollHeight;
+
+setTimeout(type,40);
+}
+}
+type();
+}
+
+
+
+</script>
+<audio id="bgMusic" autoplay loop muted>
+  <source src="Taylor_Swift_-_So_High_School_Official_Lyric_Video_48kbps.mp4" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("bgMusic");
+
+
+function startChat(){
+  showSection("chat");
+  music.muted = false;
+  music.play();
+  sendKieran();
+}
+</script>
+
+</body>
+</html>
